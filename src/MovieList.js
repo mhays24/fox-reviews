@@ -1,41 +1,133 @@
-// MovieList.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const MovieList = ({ onFavorite, favorites }) => {
-  const [movies, setMovies] = useState([]);
+const MovieList = () => {
+  const [nowPlaying, setNowPlaying] = useState([]);
+  const [popular, setPopular] = useState([]);
+  const [reviews, setReviews] = useState({});
 
   useEffect(() => {
-    const apiKey = "da3c77382414785c7560cd0819ef8c53";
-    const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
+    const fetchNowPlaying = async () => {
+      try {
+        const apiKey = "da3c77382414785c7560cd0819ef8c53";
+        const nowPlayingUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&page=1`;
 
-    axios
-      .get(apiUrl)
-      .then((response) => setMovies(response.data.results))
-      .catch((error) => console.error("Error fetching movies", error));
+        const response = await axios.get(nowPlayingUrl);
+        setNowPlaying(response.data.results);
+      } catch (error) {
+        console.error("Error fetching now playing movies", error);
+      }
+    };
+
+    const fetchPopular = async () => {
+      try {
+        const apiKey = "da3c77382414785c7560cd0819ef8c53";
+        const totalPages = 10; //Number of pages to fetch
+        const popularMovies = [];
+
+        for (let page = 1; page <= totalPages; page++) {
+          const popularUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${page}`;
+          const response = await axios.get(popularUrl);
+          popularMovies.push(...response.data.results);
+        }
+
+        setPopular(popularMovies);
+      } catch (error) {
+        console.error("Error fetching popular movies", error);
+      }
+    };
+
+    fetchNowPlaying();
+    fetchPopular();
   }, []);
 
-  const isMovieFavorited = (movie) => {
-    return favorites.some((favorite) => favorite.id === movie.id);
+  const handleReview = (movieId, rating) => {
+    setReviews((prevReviews) => ({
+      ...prevReviews,
+      [movieId]: rating,
+    }));
   };
 
   return (
     <div>
-      <h2>New Releases</h2>
+      <div className="section-title">
+        <h2>Now Playing</h2>
+      </div>
       <div className="movie-list">
-        {movies.map((movie) => (
+        {nowPlaying.map((movie) => (
           <div key={movie.id} className="movie-item">
             <img
               src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
               alt={movie.title}
             />
-            <h3>{movie.title}</h3>
-            <button
-              onClick={() => onFavorite(movie)}
-              disabled={isMovieFavorited(movie)}
-            >
-              {isMovieFavorited(movie) ? "Favorited" : "Favorite"}
-            </button>
+            <div className="item-details">
+              <h3>{movie.title}</h3>
+              <p>
+                Rating: {movie.vote_average} | Release Date: {movie.release_date} |{" "}
+                {movie.overview.length > 100
+                  ? `${movie.overview.substring(0, 100)}...`
+                  : movie.overview}
+              </p>
+              <div className="review-section">
+                <p>Your Rating: {reviews[movie.id] || "Not rated"}</p>
+                <div>
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span
+                      key={star}
+                      role="button"
+                      onClick={() => handleReview(movie.id, star)}
+                      style={{
+                        cursor: "pointer",
+                        color: reviews[movie.id] >= star ? "gold" : "gray",
+                      }}
+                    >
+                      ★
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="section-title">
+        <h2>Popular</h2>
+      </div>
+      <div className="movie-list">
+        {popular.map((movie) => (
+          <div key={movie.id} className="movie-item">
+            <img
+              src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+              alt={movie.title}
+            />
+            <div className="item-details">
+              <h3>{movie.title}</h3>
+              <p>
+                Rating: {movie.vote_average} | Release Date: {movie.release_date} |{" "}
+                {movie.overview.length > 100
+                  ? `${movie.overview.substring(0, 100)}...`
+                  : movie.overview}
+              </p>
+              <div className="review-section">
+                <p>Your Rating: {reviews[movie.id] || "Not rated"}</p>
+                <div>
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span
+                      key={star}
+                      role="button"
+                      onClick={() => handleReview(movie.id, star)}
+                      style={{
+                        cursor: "pointer",
+                        color: reviews[movie.id] >= star ? "gold" : "gray",
+                      }}
+                    >
+                      ★
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         ))}
       </div>
