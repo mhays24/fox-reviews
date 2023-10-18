@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/fox-reviews/static/css/main.7cbdc4ff.css",
+    "main.js": "/fox-reviews/static/js/main.00a504bb.js",
+    "index.html": "/fox-reviews/index.html",
+    "main.7cbdc4ff.css.map": "/fox-reviews/static/css/main.7cbdc4ff.css.map",
+    "main.00a504bb.js.map": "/fox-reviews/static/js/main.00a504bb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7cbdc4ff.css",
+    "static/js/main.00a504bb.js"
+  ]
+}
