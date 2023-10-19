@@ -22,7 +22,7 @@ const MovieList = () => {
     const fetchPopular = async () => {
       try {
         const apiKey = "da3c77382414785c7560cd0819ef8c53";
-        const totalPages = 10; //Number of pages to fetch
+        const totalPages = 10; // Number of pages to fetch
         const popularMovies = [];
 
         for (let page = 1; page <= totalPages; page++) {
@@ -56,37 +56,44 @@ const MovieList = () => {
       <div className="movie-list">
         {nowPlaying.map((movie) => (
           <div key={movie.id} className="movie-item">
-            <img
-              src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
-              alt={movie.title}
-            />
-            <div className="item-details">
-              <h3>{movie.title}</h3>
-              <p>
-                Rating: {movie.vote_average} | Release Date: {movie.release_date} |{" "}
-                {movie.overview.length > 100
-                  ? `${movie.overview.substring(0, 100)}...`
-                  : movie.overview}
-              </p>
-              <div className="review-section">
-                <p>Your Rating: {reviews[movie.id] || "Not rated"}</p>
-                <div>
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <span
-                      key={star}
-                      role="button"
-                      onClick={() => handleReview(movie.id, star)}
-                      style={{
-                        cursor: "pointer",
-                        color: reviews[movie.id] >= star ? "gold" : "gray",
-                      }}
-                    >
-                      ★
-                    </span>
-                  ))}
+            <a
+              href={`https://www.themoviedb.org/movie/${movie.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="movie-link" // Add a class to make the entire item clickable
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <div className="item-details">
+                <h3>{movie.title}</h3>
+                <p>
+                  Rating: {movie.vote_average} | Release Date: {movie.release_date} |{" "}
+                  {movie.overview.length > 100
+                    ? `${movie.overview.substring(0, 100)}...`
+                    : movie.overview}
+                </p>
+                <div className="review-section">
+                  <p>Your Rating: {reviews[movie.id] || "Not rated"}</p>
+                  <div>
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <span
+                        key={star}
+                        role="button"
+                        onClick={() => handleReview(movie.id, star)}
+                        style={{
+                          cursor: "pointer",
+                          color: reviews[movie.id] >= star ? "gold" : "gray",
+                        }}
+                      >
+                        ★
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
         ))}
       </div>
@@ -97,37 +104,44 @@ const MovieList = () => {
       <div className="movie-list">
         {popular.map((movie) => (
           <div key={movie.id} className="movie-item">
-            <img
-              src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
-              alt={movie.title}
-            />
-            <div className="item-details">
-              <h3>{movie.title}</h3>
-              <p>
-                Rating: {movie.vote_average} | Release Date: {movie.release_date} |{" "}
-                {movie.overview.length > 100
-                  ? `${movie.overview.substring(0, 100)}...`
-                  : movie.overview}
-              </p>
-              <div className="review-section">
-                <p>Your Rating: {reviews[movie.id] || "Not rated"}</p>
-                <div>
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <span
-                      key={star}
-                      role="button"
-                      onClick={() => handleReview(movie.id, star)}
-                      style={{
-                        cursor: "pointer",
-                        color: reviews[movie.id] >= star ? "gold" : "gray",
-                      }}
-                    >
-                      ★
-                    </span>
-                  ))}
+            <a
+              href={`https://www.themoviedb.org/movie/${movie.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="movie-link" // Add a class to make the entire item clickable
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <div className="item-details">
+                <h3>{movie.title}</h3>
+                <p>
+                  Rating: {movie.vote_average} | Release Date: {movie.release_date} |{" "}
+                  {movie.overview.length > 100
+                    ? `${movie.overview.substring(0, 100)}...`
+                    : movie.overview}
+                </p>
+                <div className="review-section">
+                  <p>Your Rating: {reviews[movie.id] || "Not rated"}</p>
+                  <div>
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <span
+                        key={star}
+                        role="button"
+                        onClick={() => handleReview(movie.id, star)}
+                        style={{
+                          cursor: "pointer",
+                          color: reviews[movie.id] >= star ? "gold" : "gray",
+                        }}
+                      >
+                        ★
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
         ))}
       </div>
