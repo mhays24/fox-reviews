@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/fox-reviews/static/css/main.3da471f6.css",
-    "main.js": "/fox-reviews/static/js/main.c59c3cff.js",
+    "main.css": "/fox-reviews/static/css/main.059f11c4.css",
+    "main.js": "/fox-reviews/static/js/main.04a5f192.js",
     "index.html": "/fox-reviews/index.html",
-    "main.3da471f6.css.map": "/fox-reviews/static/css/main.3da471f6.css.map",
-    "main.c59c3cff.js.map": "/fox-reviews/static/js/main.c59c3cff.js.map"
+    "main.059f11c4.css.map": "/fox-reviews/static/css/main.059f11c4.css.map",
+    "main.04a5f192.js.map": "/fox-reviews/static/js/main.04a5f192.js.map"
   },
   "entrypoints": [
-    "static/css/main.3da471f6.css",
-    "static/js/main.c59c3cff.js"
+    "static/css/main.059f11c4.css",
+    "static/js/main.04a5f192.js"
   ]
 }
