@@ -60,7 +60,7 @@ const MovieList = () => {
               href={`https://www.themoviedb.org/movie/${movie.id}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="movie-link" // Add a class to make the entire item clickable
+              className="movie-link"
             >
               <img
                 src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
@@ -69,9 +69,9 @@ const MovieList = () => {
               <div className="item-details">
                 <h3>{movie.title}</h3>
                 <p>
-                  Rating: {movie.vote_average} | Release Date: {movie.release_date} |{" "}
+                  Release Date: {movie.release_date} Rating: {movie.vote_average} |{" "}
                   {movie.overview.length > 100
-                    ? `${movie.overview.substring(0, 100)}...`
+                    ? `${movie.overview.substring(0, 150)}...`
                     : movie.overview}
                 </p>
                 <div className="review-section">
@@ -108,7 +108,7 @@ const MovieList = () => {
               href={`https://www.themoviedb.org/movie/${movie.id}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="movie-link" // Add a class to make the entire item clickable
+              className="movie-link"
             >
               <img
                 src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}

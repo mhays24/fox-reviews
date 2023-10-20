@@ -8,7 +8,28 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 1000px; /* Adjust the minimum width as needed */
+  min-width: 1000px;
+  /* Adjust the minimum width as needed */
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+
+.page-title::before {
+  content: 'Foxes Review';
+  font-size: 2rem;
+  color: #eee;
+  display: inline-block;
+  background-color: #374e6d;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  letter-spacing: 5px;
+  font-family: 'Pacifico', cursive;
+  font-weight: bold;
 }
 
 .app-container {
@@ -26,6 +47,7 @@ body {
   margin-bottom: 25px;
   border-top: 2px solid #fff;
   padding-top: 10px;
+  text-decoration: underline;
 }
 
 .movie-list {
@@ -98,8 +120,8 @@ body {
 
 .small-logo {
   position: fixed;
-  top: 14px;
-  right: 10px;
+  top: 20px;
+  right: 20px;
   width: 50px;
   height: auto;
   z-index: 1000;
